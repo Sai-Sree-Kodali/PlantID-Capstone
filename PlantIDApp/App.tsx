@@ -173,13 +173,14 @@ const PlantIDApp: React.FC = () => {
   };
 
   const pickImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 0.8,
-      });
+  try {
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: false,  // ✅ DISABLE EDITING - fixes freeze
+      quality: 0.8,
+      exif: false,
+    });
+
 
       if (!result.canceled && result.assets[0]) {
         setIsLoading(true);
